@@ -22,7 +22,8 @@
     <div>
       <%= form.label :email, class: label_class %>
       <%= form.text_field :email, class: input_class, data: { payment_target: "email" } %>
-    </div>   
+    </div>
+   
   </div>
 
   <div class="mb-6">  
@@ -58,5 +59,6 @@
     </div>
   </div>
 
-  <%= form.submit @booking_type.payment_required? ? "Schedule booking for #{number_to_currency(@booking_type.price)}" : "Schedule booking", class: button_class(theme: 'primary') %>
+  
+  <%= form.submit @booking_type.payment_required? ? "Schedule booking for #{number_to_currency(@booking_type.price)}" : "Schedule booking", class: button_class(theme: 'primary'), data: { payment_target: "submit" } %>
 <% end %>

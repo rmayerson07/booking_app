@@ -50,24 +50,24 @@ class BookingsController < ApplicationController
   end
 
   def intent
-    # @booking_type = BookingType.find(params[:_json])
-    # amount = @booking_type.price * 100
+    @booking_type = BookingType.find(params[:_json])
+    amount = @booking_type.price * 100
 
-    # payment_intent = Stripe::PaymentIntent.create(
-    #   amount: amount,
-    #   currency: 'usd',
-    #   automatic_payment_methods: {
-    #     enabled: true
-    #   },
-    #   metadata: {
-    #     user_id: @booking_type.user.id,
-    #     booking_type_id: @booking_type.id
-    #   }
-    # )
+    payment_intent = Stripe::PaymentIntent.create(
+      amount: amount,
+      currency: 'usd',
+      automatic_payment_methods: {
+        enabled: true
+      },
+      metadata: {
+        user_id: @booking_type.user.id,
+        booking_type_id: @booking_type.id
+      }
+    )
 
-    # respond_to do |format|
-    #   format.json { render json: { clientSecret: payment_intent['client_secret'] } }
-    # end
+    respond_to do |format|
+      format.json { render json: { clientSecret: payment_intent['client_secret'] } }
+    end
   end
 
 private
@@ -78,6 +78,6 @@ private
 
     # Only allow a list of trusted parameters through.
     def booking_params
-      params.require(:booking).permit(:booking_type_id, :status, :name, :email, :phone, :phone_type, :start_at, :end_at)
+      params.require(:booking).permit(:booking_type_id, :status, :name, :email, :start_at, :end_at)
     end
 end
