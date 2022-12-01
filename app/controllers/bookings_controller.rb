@@ -78,6 +78,6 @@ private
 
     # Only allow a list of trusted parameters through.
     def booking_params
-      params.require(:booking).permit(:booking_type_id, :status, :name, :email, :start_at, :end_at)
+      params.require(:booking).permit(:booking_type_id, :status, :name, :email, :start_at, :end_at, :phone, :phone_type)
     end
 end

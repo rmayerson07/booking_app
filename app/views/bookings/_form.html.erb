@@ -23,10 +23,20 @@
       <%= form.label :email, class: label_class %>
       <%= form.text_field :email, class: input_class, data: { payment_target: "email" } %>
     </div>
+
+    <div>
+      <%= form.label :phone, class: label_class %>
+      <%= form.text_field :phone, class: input_class%>
+    </div>    
    
   </div>
 
   <div class="mb-6">  
+  <div>
+    
+     <%= form.select :phone_type, options_for_select(Booking.phone_types.map { |key, value| [key.capitalize, key] }, form.object.phone_type), {}, {} %>
+    
+    </div>
   </div>
 
   <h3 class="font-bold text-lg mb-3">Booking details</h3>
